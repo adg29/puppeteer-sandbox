@@ -18,24 +18,28 @@ const defaultMarketingOptions: EtsyMarketingOptions = {
 
 export const marketEtsyPerson = (
   marketingOptions: EtsyMarketingOptions = defaultMarketingOptions,
-) => async (credentials: Credentials): Promise<void> => {
-  const operationalOptions = {
-    ...defaultMarketingOptions,
-    ...marketingOptions,
-  };
+) => (credentials: Credentials): Promise<void> => {
+  return new Promise(async (resolve, reject) => {
+    const operationalOptions = {
+      ...defaultMarketingOptions,
+      ...marketingOptions,
+    };
 
-  const { email, password } = credentials;
+    const { email, password } = credentials;
 
-  const browser = await launchBrowser({ headless: false });
-  const page = await openNewPage('https://etsy.com')(browser);
+    const browser = await launchBrowser({ headless: false });
+    const page = await openNewPage('https://etsy.com')(browser);
 
-  consola.info('LOGGING IN...');
-  await loginEtsyUser({ email, password })(page);
+    consola.info('LOGGING IN...');
+    await loginEtsyUser({ email, password })(page);
 
-  consola.info(`NAVIGATING TO people/${marketingOptions.personUsername}...`);
-  await navigateToEtsyPeoplePage({ username: marketingOptions.personUsername })(
-    page,
-  );
-  consola.info(`SUBMITTING MESSAGE TO ${marketingOptions.personUsername}...`);
-  await submitEtsyMarketingMessage(operationalOptions)(page);
+    consola.info(`NAVIGATING TO people/${marketingOptions.personUsername}...`);
+    await navigateToEtsyPeoplePage({
+      username: marketingOptions.personUsername,
+    })(page);
+    consola.info(`SUBMITTING MESSAGE TO ${marketingOptions.personUsername}...`);
+    await submitEtsyMarketingMessage(operationalOptions)(page);
+
+    resolve();
+  });
 };
