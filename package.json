@@ -34,8 +34,7 @@
   },
   "lint-staged": {
     "*.{ts,json,md}": [
-      "prettier --single-quote --trailing-comma all --write",
-      "git add"
+      "prettier --single-quote --trailing-comma all --write"
     ]
   },
   "license": "MIT",
