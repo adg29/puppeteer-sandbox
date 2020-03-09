@@ -1,6 +1,7 @@
 {
   "name": "puppeteer-sandbox",
   "main": "dist/index.js",
+  "version": "0.1.0",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node -r dotenv/config ./src/cli.ts",
