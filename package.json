@@ -1,0 +1,50 @@
+{
+  "name": "puppeteer-sandbox",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon  -r dotenv/config --no-stdin --exec ./node_modules/.bin/ts-node -- ./src/cli.ts",
+    "build": "tsc",
+    "prepublish": "yarn build"
+  },
+  "dependencies": {
+    "consola": "^2.11.3",
+    "dotenv": "^8.2.0",
+    "inquirer": "^7.0.3",
+    "puppeteer": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^6.5.0",
+    "@types/node": "^13.1.6",
+    "@types/puppeteer": "^2.0.0",
+    "husky": "^4.0.10",
+    "lint-staged": "^10.0.1",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.1",
+    "typescript": "^3.7.4"
+  },
+  "engines": {
+    "node": ">= 8.9.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,json,md}": [
+      "prettier --single-quote --trailing-comma all --write",
+      "git add"
+    ]
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ar-maged/puppeteer-sandbox.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "web-automation"
+  ]
+}
