@@ -1,3 +1,18 @@
+# API keys & secrets
+.env
+
+# Logs
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode
+.idea
+*.iml
+
 # Logs
 logs
 *.log
