@@ -5,30 +5,33 @@ import consola from 'consola';
 import { marketEtsyPerson } from '.';
 
 (async () => {
-  const { email, password, etsyPersonUsername} = await inquirer.prompt([
+  const { email, password, etsyPersonUsername } = await inquirer.prompt([
     {
       type: 'input',
       name: 'email',
       message: 'Enter email:',
-      default: process.env.ETSY_USERNAME
+      default: process.env.ETSY_USERNAME,
     },
     {
       type: 'password',
       name: 'password',
       message: 'Enter password:',
       mask: '*',
-      default: process.env.ETSY_PASSWORD
+      default: process.env.ETSY_PASSWORD,
     },
     {
       type: 'input',
       name: 'etsyPersonUsername',
       message: 'Enter Etsy Person Username:',
-      default: 'alangalan'
-    }
+      default: 'alangalan',
+    },
   ]);
 
   try {
-    await marketEtsyPerson({ personUsername: etsyPersonUsername })({ email, password});
+    await marketEtsyPerson({ personUsername: etsyPersonUsername })({
+      email,
+      password,
+    });
   } catch (error) {
     consola.error(error);
     process.exitCode = 1;
