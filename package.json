@@ -6,7 +6,8 @@
     "start": "node dist/index.js",
     "dev": "ts-node -r dotenv/config ./src/cli.ts",
     "build": "tsc",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "consola": "^2.11.3",
