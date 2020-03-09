@@ -1,8 +1,10 @@
 import { Page } from 'puppeteer';
 import { Credentials, EtsyPerson, EtsyMarketingOptions } from '../types';
 import consolaGlobalInstance from 'consola';
+const Sentencer = require('sentencer');
 
-const MARKETING_MESSAGE = 'Hello! Saw that we have some common interests';
+let MARKETING_MESSAGE = 'Hello! Saw that we have some common interests';
+MARKETING_MESSAGE = Sentencer.make('This is {{ an_adjective }} {{ noun }}.');
 /**
  * Logs in the user using given credentials
  */
@@ -91,13 +93,15 @@ export const submitEtsyMarketingMessage = (
     CONVO_THREAD_SELECTOR: '.convo-details .thread',
   };
 
-  let convoSubmitElement = await page.waitForSelector(
-    ELEMENTS.CONVO_COMPOSER_SUBMIT_SELECTOR,
-  );
-  await convoSubmitElement.click();
+  if (marketingOptions.CONVO_SUBMIT_FLAG) {
+    let convoSubmitElement = await page.waitForSelector(
+      ELEMENTS.CONVO_COMPOSER_SUBMIT_SELECTOR,
+    );
+    await convoSubmitElement.click();
 
-  await page.waitForSelector(ELEMENTS.CONVO_THREAD_SELECTOR);
-  await page.waitForFunction(
-    `document.querySelector('.convo-details .thread').innerText.includes(${MARKETING_MESSAGE})`,
-  );
+    await page.waitForSelector(ELEMENTS.CONVO_THREAD_SELECTOR);
+    await page.waitForFunction(
+      `document.querySelector('.convo-details .thread').innerText.includes('${MARKETING_MESSAGE}')`,
+    );
+  }
 };

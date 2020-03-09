@@ -28,7 +28,10 @@ import { marketEtsyPerson } from '.';
   ]);
 
   try {
-    await marketEtsyPerson({ personUsername: etsyPersonUsername })({
+    await marketEtsyPerson({
+      personUsername: etsyPersonUsername,
+      CONVO_SUBMIT_FLAG: Boolean(process.env.ETSY_MARKETING_CONVO_SUBMIT_FLAG),
+    })({
       email,
       password,
     });

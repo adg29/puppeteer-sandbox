@@ -11,6 +11,7 @@ import { submitEtsyMarketingMessage } from './automation/etsy';
 
 const defaultMarketingOptions: EtsyMarketingOptions = {
   personUsername: process.env.ETSY_MARKETING_USERNAME,
+  CONVO_SUBMIT_FLAG: Boolean(process.env.ETSY_MARKETING_CONVO_SUBMIT_FLAG),
 };
 
 export const marketEtsyPerson = (

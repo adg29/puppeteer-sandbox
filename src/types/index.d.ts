@@ -5,6 +5,7 @@ export type Credentials = {
 
 export type EtsyMarketingOptions = {
   personUsername: string;
+  CONVO_SUBMIT_FLAG: boolean;
 };
 
 export type EtsyPerson = {
