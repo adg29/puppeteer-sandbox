@@ -36,12 +36,11 @@ export const loginEtsyUser = (credentials: Credentials) => async (
     await page.focus(SELECTORS.SIGNIN_FORM_PASSWORD_INPUT);
     await page.keyboard.type(password);
 
+    let WAIT_RANDOM = randomIntFromInterval(2000, 5000);
     /* Submit login form */
     await Promise.all([
       page.click(SELECTORS.SIGNIN_FORM_SUBMIT),
-      page.waitForFunction(
-        `document.querySelector(${SELECTORS.SIGNIN_WELCOME_SELECTOR}).innerText.includes("Welcome back")`,
-      ),
+      page.waitFor(WAIT_RANDOM),
     ]);
   } else {
     console.info('ALREADY LOGGED IN...');
