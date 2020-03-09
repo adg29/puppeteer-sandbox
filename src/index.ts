@@ -7,9 +7,10 @@ import {
   navigateToEtsyPeoplePage,
 } from './automation';
 import { Credentials, EtsyMarketingOptions } from './types';
+import { submitEtsyMarketingMessage } from './automation/etsy';
 
 const defaultMarketingOptions: EtsyMarketingOptions = {
-  personUsername: 'alangalan',
+  personUsername: process.env.ETSY_MARKETING_USERNAME,
 };
 
 export const marketEtsyPerson = (
@@ -32,4 +33,6 @@ export const marketEtsyPerson = (
   await navigateToEtsyPeoplePage({ username: marketingOptions.personUsername })(
     page,
   );
+  consola.info(`SUBMITTING MESSAGE TO ${marketingOptions.personUsername}...`);
+  await submitEtsyMarketingMessage(operationalOptions)(page);
 };

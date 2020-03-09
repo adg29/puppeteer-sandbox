@@ -23,7 +23,7 @@ import { marketEtsyPerson } from '.';
       type: 'input',
       name: 'etsyPersonUsername',
       message: 'Enter Etsy Person Username:',
-      default: 'alangalan',
+      default: process.env.ETSY_MARKETING_USERNAME,
     },
   ]);
 
