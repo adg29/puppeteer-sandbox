@@ -16,7 +16,11 @@ export const launchBrowser = async (
 ): Promise<Browser> => {
   const browser = await puppeteer.launch({
     // userDataDir: './user_data',
-    args: ['--no-sandbox'],
+    args: [
+      '--disable-notifications',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+    ],
   });
 
   return browser;
