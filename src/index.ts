@@ -5,6 +5,7 @@ import {
   reloadPage,
   loginEtsyUser,
   navigateToEtsyPeoplePage,
+  closeBrowser,
 } from './automation';
 import { Credentials, EtsyMarketingOptions } from './types';
 import { submitEtsyMarketingMessage } from './automation/etsy';
@@ -27,7 +28,7 @@ export const marketEtsyPerson = (
 
     const { email, password } = credentials;
 
-    const browser = await launchBrowser({ headless: false });
+    const browser = await launchBrowser({ headless: true });
     const page = await openNewPage('https://etsy.com')(browser);
 
     consola.info('LOGGING IN...');
@@ -39,6 +40,8 @@ export const marketEtsyPerson = (
     })(page);
     consola.info(`SUBMITTING MESSAGE TO ${marketingOptions.personUsername}...`);
     await submitEtsyMarketingMessage(operationalOptions)(page);
+
+    await closeBrowser(browser);
 
     resolve();
   });
