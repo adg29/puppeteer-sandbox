@@ -14,6 +14,7 @@ puppeteer.use(StealthPlugin());
 export const launchBrowser = async (
   options: LaunchOptions,
 ): Promise<Browser> => {
+  console.log(`launching options ${JSON.stringify(options)}`);
   const browser = await puppeteer.launch({
     // userDataDir: './user_data',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
