@@ -21,7 +21,6 @@ export const launchBrowser = async (
       '--no-sandbox',
       '--disable-setuid-sandbox',
     ],
-    ...options,
   });
 
   return browser;
