@@ -30,7 +30,7 @@
     "typescript": "^3.7.4"
   },
   "engines": {
-    "node": ">= 8.9.0"
+    "node": "13.3.0"
   },
   "husky": {
     "hooks": {
